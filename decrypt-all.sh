@@ -9,7 +9,6 @@
 PASSPHRASE="$1"
 
 encrypted_file_name="Data/H3bitmap.lod.enc"
-cat Data/H3bitmap.lod.enc.* > $encrypted_file_name
 
 mkdir -p decrypted/Data
 

@@ -8,17 +8,15 @@
 
 PASSPHRASE="$1"
 
-  file_name="Data/H3bitmap.lod"
-  enc_name="$file_name.enc"
+file_name="Data/H3bitmap.lod"
+enc_name="$file_name.enc"
 
-  echo "Encrypting $file_name"
+echo "Encrypting $file_name"
 
-  gpg \
-    --passphrase "$PASSPHRASE" \
-    --batch \
-    --output "$file_name.enc" \
-    --symmetric \
-    --cipher-algo AES256 \
-    "$file_name"
-
-split --bytes 100M --numeric-suffixes --suffix-length=2 Data/H3bitmap.lod.enc Data/H3bitmap.lod.enc.
+gpg \
+  --passphrase "$PASSPHRASE" \
+  --batch \
+  --output "$file_name.enc" \
+  --symmetric \
+  --cipher-algo AES256 \
+  "$file_name"
