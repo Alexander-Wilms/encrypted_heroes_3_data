@@ -2,6 +2,10 @@
 
 This data is needed to run VCMI's unit tests
 
-Created by copying the folders `Data`, `Maps` and `Mp3` from a Heroes 3 installation into the folder of this repository and running `.\encrypt-all.sh <password>`. The script is based on this [Gist](https://gist.github.com/johnnyopao/33c6500bda474a7afb33207489d8e8e5).
+Created by copying the folders `Data`, `Maps` from a Heroes 3 installation into the folder `HoMM3_data`, deleting `Data/VIDEO.VID` and executing this command: 
 
-Files can be decrypted like this: `.\decrypt-all.sh <password>`
+`./crypt.py -p "password" -e`
+
+The data can be decrypted like this:
+
+`./crypt.py -p "password" -d`
