@@ -4,7 +4,6 @@ import argparse
 import os
 import shutil
 from pathlib import Path
-from pprint import pprint
 
 parser = argparse.ArgumentParser(description="Encrypts and decrypts Heroes 3 data")
 parser.add_argument("-p", "--password", required=True)
@@ -30,8 +29,8 @@ shutil.rmtree(dest, ignore_errors=True)
 shutil.copytree(src, dest, dirs_exist_ok=True)
 
 if args["decrypt"]:
-    part_0 = dest / "Data/H3bitmap.lod.enc.00"
-    part_1 = dest / "Data/H3bitmap.lod.enc.01"
+    part_0 = dest / "Data/H3bitmap.lod.enc.0"
+    part_1 = dest / "Data/H3bitmap.lod.enc.1"
     combined = dest / "Data/H3bitmap.lod.enc"
     with open(combined, "wb") as combined_f, open(part_0, "rb") as part_0_f, open(part_1, "rb") as part_1_f:
         combined_f.write(part_0_f.read())
@@ -55,7 +54,7 @@ for f in dest.glob("**/*"):
 if args["encrypt"]:
     # split file since GitHub only allows files up to 100 MB
     # https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github
-    command = f"split --bytes 100M --numeric-suffixes --suffix-length=2 {dest/'Data/H3bitmap.lod.enc'} {dest/'Data/H3bitmap.lod.enc.'}"
+    command = f"split --bytes 100M --numeric-suffixes --suffix-length=1 {dest/'Data/H3bitmap.lod.enc'} {dest/'Data/H3bitmap.lod.enc.'}"
     print(command)
     os.system(command)
     os.remove(dest/"Data/H3bitmap.lod.enc")
